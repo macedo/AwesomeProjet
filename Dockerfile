@@ -14,12 +14,16 @@ RUN apt-get update && \
     curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs
 
-RUN npm install -g expo-cli
+RUN npm install -g expo-cli @expo/ngrok@2.4.3
 
 WORKDIR $INSTALL_PATH
 COPY app/ .
 
 RUN chown -R user:user /opt/app
+
+EXPOSE 19001
+EXPOSE 19002
+EXPOSE 19006
 
 USER $USER_ID
 CMD ["npm", "install"]

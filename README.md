@@ -1,0 +1,5 @@
+# AwesomeProjet
+
+## Start
+
+`./scripts/init`

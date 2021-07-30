@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm -f .env
+cp .env.development .env
+echo "REACT_NATIVE_PACKAGER_HOSTNAME=$(hostname -I)" >> .env
+
+docker-compose up
