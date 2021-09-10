@@ -14,7 +14,8 @@ RUN apt-get update && \
     curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs
 
-RUN npm install -g expo-cli @expo/ngrok@2.4.3
+RUN npm install -g expo-cli @expo/ngrok@4.1.0
+RUN expo login -u macedo.rafaelfernandes@gmail.com -p OieSumida87+
 
 WORKDIR $INSTALL_PATH
 COPY app/ .
