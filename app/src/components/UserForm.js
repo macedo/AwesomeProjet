@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 
 const Form = styled.View`
@@ -43,13 +43,15 @@ const Link = styled.Text`
 const SignInForm = props => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [passwordConfirmation, setPasswordConfirmation] = useState();
 
     const handleSubmit = () => {
         props.action({
             variables: {
                 input: {
                     email: email,
-                    password: password
+                    password: password,
+                    password_confirmation: passwordConfirmation
                 }
             }
         });
@@ -75,6 +77,17 @@ const SignInForm = props => {
                 secureTextEntry={ true }
             />
 
+            {props.formType === 'signUp' && (
+                <View>
+                    <FormLabel>Password Confirmation</FormLabel>
+                    <StyledInput
+                        onChangeText={ text => setPasswordConfirmation(text) }
+                        value={ passwordConfirmation }
+                        textContentType="passwordConfirmation"
+                        secureTextEntry={ true }
+                    />
+                </View>
+            )}
 
             <FormButton onPress={handleSubmit}>
                 <ButtonText>Submit</ButtonText>
