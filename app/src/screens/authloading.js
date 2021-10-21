@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { NavigationScreenProp } from 'react-navigation';
 
 import Loading from '../components/Loading';
 
@@ -12,7 +11,6 @@ const AuthLoading = props => {
         //navigate to the app screen if a token is present
         //else navigate to the auth screen
         props.navigation.navigate(userToken ? 'App' : 'Auth');
-        props.navigation.navigate('Auth');
     }
 
     //call checkLoginState when the component mounts

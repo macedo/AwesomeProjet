@@ -1,16 +1,16 @@
 import React from 'react';
 import { Text, View} from 'react-native';
 
-const Favorites = () => {
+const AddPost = () => {
     return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text>My Favorites</Text>
+            <Text>AddPost</Text>
         </View>
     );
 };
 
-Favorites.navigationOptions = {
-    title: 'Favorites'
+AddPost.navigationOptions = {
+    title: 'AddPost'
 };
 
-export default Favorites;
+export default AddPost;

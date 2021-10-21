@@ -14,17 +14,17 @@ const ENV = {
         API_URL: 'https://xvgqlapi.herokuapp.com/api'
     }
 };
-   
+
 const getEnvVars = (env = Constants.manifest.releaseChannel) => {
     // __DEV__ is set to true when react-native is running locally in dev mode
     // __DEV__ is set to false when our app is published
-    //if (__DEV__) {
-    //    return ENV.dev;
-    //} else if (env === 'prod') {
-    //    return ENV.prod;
-    //}
+    if (__DEV__) {
+        return ENV.dev;
+    } else if (env === 'prod') {
+        return ENV.prod;
+    }
 
     return ENV.dev
 };
-  
+
 export default getEnvVars;

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { useMutation, gql } from '@apollo/client'
 import * as SecureStore from 'expo-secure-store';
+import { Layout, Text } from 'react-native-ui-kitten';
 
 import UserForm from '../components/UserForm';
 import Loading from '../components/Loading';
@@ -28,14 +29,16 @@ const SignIn = props => {
     if (loading) return <Loading />
 
     return (
-        <React.Fragment>
-            {error && <Text>Error signing in!</Text>}
-            <UserForm
-                action={signIn}
-                formType="signIn"
-                navigation={props.navigation}
-            />
-        </React.Fragment>
+        <SafeAreaView style={{ flex: 1 }}>
+            <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                {error && <Text>Error signing in!</Text>}
+                <UserForm
+                    action={signIn}
+                    formType="signIn"
+                    navigation={props.navigation}
+                />
+            </Layout>
+        </SafeAreaView>
     );
 };
 

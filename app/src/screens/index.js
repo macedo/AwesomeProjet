@@ -2,21 +2,31 @@ import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
-import { MaterialCommunityIcons, MaterialIcons, FontAwesome  } from '@expo/vector-icons'; 
-
+import { Icon } from 'react-native-ui-kitten'
 
 import AuthLoading from './authloading';
-import SignIn from './signin';
-import SignUp from './signup';
+import SignInScreen from './signin';
+import SignUpScreen from './signup';
 import Settings from './settings';
 import BookScreen from './book';
 import Feed from './feed';
-import Favorites from './favorites';
+import Search from './search';
 import Profile from './profile';
+import AddPost from './addPost';
 
 const AuthStack = createStackNavigator({
-    SignIn: SignIn,
-    SignUp: SignUp
+    SignIn: {
+        screen: SignInScreen,
+        navigationOptions: {
+            headerShown: false
+        }
+    },
+    SignUp: {
+        screen: SignUpScreen,
+        navigationOptions: {
+            headerShown: false
+        }
+    }
 });
 
 const FeedStack = createStackNavigator({
@@ -24,9 +34,12 @@ const FeedStack = createStackNavigator({
     Book: BookScreen
 });
 
-const FavoritesStack = createStackNavigator({
-    Favorites: Favorites,
-    Book: BookScreen
+const SearchStack = createStackNavigator({
+    Search: Search,
+});
+
+const AddPostStack = createStackNavigator({
+    AddPost: AddPost
 });
 
 const ProfileStack = createStackNavigator({
@@ -38,44 +51,80 @@ const SettingsStack = createStackNavigator({
     Settings: Settings
 });
 
-const TabNavigator = createBottomTabNavigator({
-    FeedScreen: {
-        screen: FeedStack,
-        navigationOptions: {
-            tabBarLabel: 'Feed',
-            tabBarIcon: () => (
-                <MaterialCommunityIcons name="home" size={24} color="black" />
-            )
+const TabNavigator = createBottomTabNavigator(
+    {
+        Feed: {
+            screen: FeedStack,
+            navigationOptions: {
+                tabBarIcon: ({ focused }) => (
+                    <Icon
+                        name='home-outline'
+                        width={32}
+                        height={32}
+                        fill={focused ? '#111' : '#939393'}
+                    />
+                )
+            }
+        },
+        Search: {
+            screen: SearchStack,
+            navigationOptions: {
+                tabBarIcon: ({ focused }) => (
+                    <Icon
+                        name='search-outline'
+                        width={32}
+                        height={32}
+                        fill={focused ? '#111' : '#939393'}
+                    />
+                )
+            }
+        },
+        AddPost: {
+            screen: AddPostStack,
+            navigationOptions: {
+                tabBarIcon: ({ focused }) => (
+                    <Icon
+                        name='plus-square-outline'
+                        width={32}
+                        height={32}
+                        fill={focused ? '#111' : '#939393'}
+                    />
+                )
+            }
+        },
+        Settings: {
+            screen: SettingsStack,
+            navigationOptions: {
+                tabBarIcon: ({ focused }) => (
+                    <Icon
+                        name='heart-outline'
+                        width={32}
+                        height={32}
+                        fill={focused ? '#111' : '#939393'}
+                    />
+                )
+            }
+        },
+        Profile: {
+            screen: ProfileStack,
+            navigationOptions: {
+                tabBarIcon: ({ focused }) => (
+                    <Icon
+                        name='person-outline'
+                        width={32}
+                        height={32}
+                        fill={focused ? '#111' : '#939393'}
+                    />
+                )
+            }
         }
     },
-    Favorites: {
-        screen: FavoritesStack,
-        navigationOptions: {
-            tabBarLabel: 'Favorites',
-            tabBarIcon: () => (
-                <MaterialIcons name="star" size={24} color="black" />
-            )
-        }
-    },
-    Profile: {
-        screen: ProfileStack,
-        navigationOptions: {
-            tabBarLabel: 'Profile',
-            tabBarIcon: () => (
-                <FontAwesome name="user-circle" size={24} color="black" />
-            )
-        }
-    },
-    Settings: {
-        screen: SettingsStack,
-        navigationOptions: {
-            tabBarLabel: 'Settings',
-            tabBarIcon: () => (
-                <MaterialIcons name="settings" size={24} color={'black'} />
-            )
+    {
+        tabBarOptions: {
+            showLabel: false
         }
     }
-});
+);
 
 const SwitchNavigator = createSwitchNavigator(
     {
@@ -84,7 +133,7 @@ const SwitchNavigator = createSwitchNavigator(
         App: TabNavigator
     },
     {
-        initialRouteName: 'AuthLoading'
+        initialRouteName: 'Auth'
     }
 );
 
